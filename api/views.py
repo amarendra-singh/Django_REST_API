@@ -4,6 +4,7 @@
 # from requests import request
 # from yaml import serialize
 
+from requests import Session
 from rest_framework.response import Response
 # from rest_framework.decorators import APIView
 from rest_framework import status
@@ -17,16 +18,17 @@ from rest_framework.generics import GenericAPIView
 from rest_framework.mixins import ListModelMixin, CreateModelMixin, RetrieveModelMixin, UpdateModelMixin, DestroyModelMixin
 from rest_framework.generics import ListAPIView, CreateAPIView, RetrieveAPIView, UpdateAPIView, DestroyAPIView, ListCreateAPIView, RetrieveUpdateAPIView, RetrieveUpdateDestroyAPIView
 from rest_framework.permissions import IsAuthenticated, AllowAny, IsAdminUser
-from rest_framework.authentication import BasicAuthentication
-
+from rest_framework.authentication import BasicAuthentication, SessionAuthentication, TokenAuthentication
+from .custompermission import MyPermissioin
 
 #Auth & Permission
 class StudentModelViewSet(viewsets.ModelViewSet):
     queryset = Student.objects.all()
     serializer_class = StudentSerializer
-    authentication_classes = [BasicAuthentication]
-    permission_classes = [IsAuthenticated]
-    permission_classes= [IsAdminUser]
+    # authentication_classes = [SessionAuthentication]
+    # permission_classes = [MyPermissioin]
+    # permission_classes = [IsAuthenticated]
+    # permission_classes= [IsAdminUser]
     # permission_classes= [AllowAny]
 
 
