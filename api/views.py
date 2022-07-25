@@ -21,15 +21,29 @@ from rest_framework.permissions import IsAuthenticated, AllowAny, IsAdminUser
 from rest_framework.authentication import BasicAuthentication, SessionAuthentication, TokenAuthentication
 from .custompermission import MyPermissioin
 
-#Auth & Permission
+from rest_framework_simplejwt.authentication import JWTAuthentication
+
+#JWT
 class StudentModelViewSet(viewsets.ModelViewSet):
     queryset = Student.objects.all()
     serializer_class = StudentSerializer
-    # authentication_classes = [SessionAuthentication]
-    # permission_classes = [MyPermissioin]
-    # permission_classes = [IsAuthenticated]
-    # permission_classes= [IsAdminUser]
-    # permission_classes= [AllowAny]
+    authentication_classes = [JWTAuthentication]
+    permission_classes = [IsAuthenticated]
+
+
+
+
+
+# class StudentModelViewSet(viewsets.ModelViewSet):
+#     queryset = Student.objects.all()
+#     serializer_class = StudentSerializer
+#     authentication_classes = [TokenAuthentication]
+#     permission_classes = [IsAuthenticated]
+#     # authentication_classes = [SessionAuthentication]
+#     # permission_classes = [MyPermissioin]
+#     # permission_classes = [IsAuthenticated]
+#     # permission_classes= [IsAdminUser]
+#     # permission_classes= [AllowAny]
 
 
 
